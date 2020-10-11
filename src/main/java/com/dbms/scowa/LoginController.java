@@ -88,8 +88,7 @@ public class LoginController{
             return "redirect:/owner/home";
         }
         else if(user.getUserType().equals("security")){
-            // return "redirect:/security";
-            return "test";
+            return "redirect:/security/addguest";
         }
         else if(user.getUserType().equals("staff")){
             return "redirect:/staff/home";

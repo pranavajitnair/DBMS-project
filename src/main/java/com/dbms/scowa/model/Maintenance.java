@@ -1,16 +1,15 @@
 package com.dbms.scowa.model;
 
-public class Maintainance{
+public class Maintenance{
     private String month;
     private String year;
-    private String code;
-    private int maintainanceid;
+    private int maintenanceid;
     private int amount;
     private int ownerid;
     private int apartmentid;
 
-    public void setMaintainanceid(int val){
-        this.maintainanceid=val;
+    public void setMaintenanceid(int val){
+        this.maintenanceid=val;
     }
     public void setAmount(int val){
         this.amount=val;
@@ -27,12 +26,9 @@ public class Maintainance{
     public void setYear(String val){
         this.year=val;
     }
-    public void setCode(String val){
-        this.code=val;
-    }
 
-    public int getMaintainanceid(){
-        return this.maintainanceid;
+    public int getMaintenanceid(){
+        return this.maintenanceid;
     }
     public int getOwnerid(){
         return this.ownerid;
@@ -48,8 +44,5 @@ public class Maintainance{
     }
     public String getYear(){
         return this.year;
-    }
-    public String getCode(){
-        return this.code;
     }
 }

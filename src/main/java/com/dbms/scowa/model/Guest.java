@@ -7,7 +7,9 @@ public class Guest{
     private String exitTime;
     private String phone;
     private int guestid;
-    private int categoryid;
+    private String category;
+    private String visisted;
+    private String date;
 
     public void setName(String val){
         this.name=val;
@@ -27,10 +29,22 @@ public class Guest{
     public void setGuestid(int val){
         this.guestid=val;
     }
-    public void setCategoryid(int val){
-        this.categoryid=val;
+    public void setCategory(String val){
+        this.category=val;
+    }
+    public void setVisited(String val){
+        this.visisted=val;
+    }
+    public void setDate(String val){
+        this.date=val;
     }
 
+    public String getDate(){
+        return this.date;
+    }
+    public String getVisited(){
+        return this.visisted;
+    }
     public String getName(){
         return this.name;
     }
@@ -46,10 +60,10 @@ public class Guest{
     public String getPhone(){
         return this.phone;
     }
-    public int getGuestif(){
+    public int getGuestid(){
         return this.guestid;
     }
-    public int getCategoryid(){
-        return this.categoryid;
+    public String getCategory(){
+        return this.category;
     }
 }

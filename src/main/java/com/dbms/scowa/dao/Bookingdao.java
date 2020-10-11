@@ -113,4 +113,29 @@ public class Bookingdao {
         String sql="update Booking set amount=?,startTime=?, endTime=?, phone=?, purposeOfBooking=? where bookingid=?";
         jt.update(sql,amount,startTime,endTime,phone,purposeOfBooking,bookingid);
     }
+
+    public List<Booking> findByResidentid(int residentid){
+        String sql="select * from Booking where residentid="+Integer.toString(residentid);
+        return jt.query(sql, new RowMapper<Booking>(){
+            public Booking mapRow(ResultSet row,int rowNum) throws SQLException{
+                Booking o=new Booking();
+                o.setAmount(row.getInt("amount"));
+                o.setBookingid(row.getInt("bookingid"));
+                o.setDate(row.getString("date"));
+                o.setEndTime(row.getString("endTime"));
+                o.setStartTime(row.getString("startTime"));
+                o.setPhone(row.getString("phone"));
+                o.setFacilityid(row.getInt("facilityid"));
+                o.setResidentid(row.getInt("residentid"));
+                o.setPurposeOfBooking(row.getString("purposeOfBooking"));
+
+                return o;
+            }
+        });
+    }
+
+    public void delete(int bookingid){
+        String sql="delete from Booking where bookingid="+Integer.valueOf(bookingid);
+        jt.update(sql, bookingid);
+    }
 }

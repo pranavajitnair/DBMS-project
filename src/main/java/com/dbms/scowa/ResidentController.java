@@ -100,7 +100,7 @@ public class ResidentController {
 
     @GetMapping("/selectfacilities/{facilityid}")
     public ModelAndView selectfacilities(@PathVariable(value="facilityid") final int facilityid) {
-        final int month=Calendar.getInstance().get(Calendar.MONTH);
+        final int month=Calendar.getInstance().get(Calendar.MONTH)+1;
         final int year=Calendar.getInstance().get(Calendar.YEAR);
         int days=Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
 
@@ -129,7 +129,7 @@ public class ResidentController {
     Principal principal,RedirectAttributes ra){
         Resident resident=residentdao.findByid(Integer.valueOf(principal.getName()));
         
-        final int month=Calendar.getInstance().get(Calendar.MONTH);
+        final int month=Calendar.getInstance().get(Calendar.MONTH)+1;
         final int year=Calendar.getInstance().get(Calendar.YEAR);
         String mon=Integer.toString(month);
         String yer=Integer.toString(year);
@@ -190,9 +190,49 @@ public class ResidentController {
         bookingdao.update(book.getBookingid(), amount, book.getStartTime(), 
         book.getEndTime(), book.getPhone(), book.getPurposeOfBooking());
 
-        return "test";
+        ra.addAttribute("kz",0);
+        return "redirect:/resident/viewbookings";
     }
 
+    @GetMapping("/viewbookings")
+    public ModelAndView viewbookings(Principal principal, @RequestParam("kz") int kz){
+        ModelAndView model=new ModelAndView("viewbookings");
+        Resident resident=residentdao.findByid(Integer.valueOf(principal.getName()));
+        List<Booking> booked=bookingdao.findByResidentid(resident.getResidentid());
 
+        List<Boolean> test=new ArrayList<Boolean>(); 
+        for(Booking book:booked){
+            int date=Integer.valueOf(book.getDate().substring(0, 2));
+            int month=Integer.valueOf(book.getDate().substring(3, 5));
+            int year=Integer.valueOf(book.getDate().substring(6, 10));
+
+            final int cur_month=Calendar.getInstance().get(Calendar.MONTH)+1;
+            final int cur_year=Calendar.getInstance().get(Calendar.YEAR);
+            int today=Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+            
+            if(cur_year>year||(cur_year==year && cur_month>month)||(cur_year==year && cur_month==month && today>date)) test.add(false);
+            else test.add(true);
+        }
+
+        model.addObject("bookings",booked);
+        model.addObject("kz", kz);
+        model.addObject("test",test);
+        return model;
+    }
+
+    @GetMapping("/deletebooking/{bookingid}")
+    public String deletebooking(@PathVariable(value="bookingid") int bookingid, RedirectAttributes ra){
+        Booking booking=bookingdao.findByid(bookingid);
+        int day=Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+
+        int bookday=Integer.valueOf(booking.getDate().substring(0,2));
+        if(bookday-day>10){
+            bookingdao.delete(bookingid);
+            ra.addAttribute("kz",0);
+        }
+
+        ra.addAttribute("kz",1);
+        return "redirect:/resident/viewbookings";
+    }
 
 }
