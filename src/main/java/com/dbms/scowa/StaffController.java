@@ -29,12 +29,18 @@ import javax.validation.Valid;
 import com.dbms.scowa.dao.Staffdao;
 import com.dbms.scowa.model.Staff;
 
+import com.dbms.scowa.dao.Maintenancedao;
+import com.dbms.scowa.model.Maintenance;
+import com.dbms.scowa.model.Owner;
+
 @RequestMapping("/staff")
 @Controller
 public class StaffController {
 
     @Autowired
     private Staffdao staffdao;
+    @Autowired
+    private Maintenancedao maintenancedao;
 
     @GetMapping("/home")
     public ModelAndView viewpage(final Principal principal){
@@ -69,5 +75,42 @@ public class StaffController {
         staff.getStreet(), staff.getJoinDate(), staff.getPhone(), staff.getUserid());
 
         return "redirect:/staff/home";
+    }
+
+    @GetMapping("/registeredowners")
+    public ModelAndView getpaid(@RequestParam("month") String month,@RequestParam("year") String year){
+        List<Maintenance> mains=maintenancedao.findByDate(month, year);
+        ModelAndView model=new ModelAndView("viewmaintenance");
+        model.addObject("mains", mains);
+
+        return model;
+    }
+
+    @GetMapping("/notregisteredowners")
+    public ModelAndView notregistered(@RequestParam("month") String month,@RequestParam("year") String year){
+        List<Owner> owners=maintenancedao.findByDateNotPaid(month, year);
+        ModelAndView model=new ModelAndView("listnonpaidowners");
+        model.addObject("owners",owners);
+
+        return model;
+    }
+
+    @GetMapping("/listregistered")
+    public String listregistered(){
+        return "registeredownersdate";
+    }
+
+    @GetMapping("/listnotregistered")
+    public String listnotregistered(){
+        return "notregisteredownersdate";
+    }
+
+    @GetMapping("/updatemaintenance/{month}/{year}/{maintenanceid}")
+    public String updatemaintenance(@PathVariable(value="month") String month, @PathVariable(value="year") String year, 
+    @PathVariable(value="maintenanceid") int maintenanceid){
+        maintenancedao.update(true, maintenanceid);
+
+        String url="?month="+month+"&year="+year;
+        return "redirect:/staff/registeredowners"+url;
     }
 }

@@ -37,17 +37,57 @@
                         <td>${service.description}</td> 
                         <td>${service.numOfPeople}</td>
                         <td>${service.monthlyAmount}</td>
-                        <td><button  onclick="window.location.href='/admin/deleteservice/${service.serviceid}'">
-                            Delete
-                        </button></td>
                         <td>
                             <button onclick="window.location.href='/admin/updateservice/${service.serviceid}'">
                             Update</button>
                         </td>
+                        <td>
+                            <button onclick="func()">Pay Salary</button>
+                        </td>
+                        <td>
+                            <input style="display: none;" placeholder="Enter the amount" id="input" type="text" required/>
+                        </td>
+                        <td>
+                            <input style="display: none;" placeholder="enter the mm/yyyy" id="my" type="text" required/>
+                        </td>
+                        <td>
+                            <button  id="button" style="display: none;" onclick="pay('${service.serviceid}','${service.vendorid}')">Pay</button>
+                        </td>
+                        <td>
+                            <input style="display: none;" placeholder="enter the mm/yyyy" id="my1" type="text" required/>
+                        </td>
+                        <td>
+                            <button onclick="func1()">View Salary</button>
+                        </td>
+                        <td>
+                            <button onclick="func2('${service.serviceid}')" style="display: none;" id="button1">View</button>
+                        </td>
+                        <td><button  onclick="window.location.href='/admin/deleteservice/${service.serviceid}'">
+                            Delete
+                        </button></td>
                     </tr> 
                 </tbody>
             </c:forEach>
-           
         </table>
+        <script>
+            function pay(serviceid,vendorid){
+                salary=document.getElementById("input");
+                monthyear=document.getElementById("my");
+                window.location.href='/admin/paysalary?serviceid='+serviceid+"&vendorid="+vendorid+"&salary="+salary.value+"&monthyear="+monthyear.value;
+            }
+            function func(){
+                document.getElementById("button").style.display="block";
+                document.getElementById("input").style.display="block";
+                document.getElementById("my").style.display="block";
+            }
+            function func1(){
+                document.getElementById("my1").style.display="block";
+                document.getElementById("button1").style.display="block";
+            }
+            function func2(serviceid){
+                monthyear=document.getElementById("my1");
+                window.location.href='/admin/viewsalary?serviceid='+serviceid+"&monthyear="+monthyear.value;
+            }
+        </script>
     </body>
 </html> 

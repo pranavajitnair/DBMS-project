@@ -31,17 +31,38 @@
                         <td>${project.endTime}</td> 
                         <td>${project.vendorid}</td> 
                         <td>${project.description}</td> 
-                        <td><button  onclick="window.location.href='/admin/deleteproject/${project.projectid}'">
-                            Delete
-                        </button></td>
                         <td>
                             <button onclick="window.location.href='/admin/updateproject/${project.projectid}'">
                             Update</button>
                         </td>
+                        <td>
+                            <button onclick="func()">Add a payment</button>
+                        </td>
+                        <td>
+                            <input style="display: none;" placeholder="Enter the amount" id="input" type="text" required/>
+                        </td>
+                        <td>
+                            <button  id="button" style="display: none;" onclick="pay('${project.projectid}','${project.vendorid}')">Pay</button>
+                        </td>
+                        <td>
+                            <button onclick="window.location.href='/admin/viewpayments/${project.projectid}'">View Payments</button>
+                        </td>
+                        <td><button  onclick="window.location.href='/admin/deleteproject/${project.projectid}'">
+                            Delete
+                        </button></td>
                     </tr> 
                 </tbody>
             </c:forEach>
-           
         </table>
+        <script>
+            function func(){
+                document.getElementById("button").style.display="block";
+                document.getElementById("input").style.display="block";
+            }
+            function pay(projectid,vendorid){
+                amount=document.getElementById("input");
+                window.location='/admin/makepayment?projectid='+projectid+'&vendorid='+vendorid+'&amount='+amount.value;
+            }
+        </script>
     </body>
 </html> 

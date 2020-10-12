@@ -34,6 +34,8 @@ import com.dbms.scowa.dao.Staffdao;
 import com.dbms.scowa.dao.Servicedao;
 import com.dbms.scowa.dao.Projectdao;
 import com.dbms.scowa.dao.Vendordao;
+import com.dbms.scowa.dao.Paiddao;
+import com.dbms.scowa.dao.Salarydao;
 
 import com.dbms.scowa.model.User;
 import com.dbms.scowa.model.Resident;
@@ -43,6 +45,8 @@ import com.dbms.scowa.model.Owner;
 import com.dbms.scowa.model.Service;
 import com.dbms.scowa.model.Vendor;
 import com.dbms.scowa.model.Project;
+import com.dbms.scowa.model.Paid;
+import com.dbms.scowa.model.Salary;
 
 @Controller
 @RequestMapping("/admin")
@@ -64,6 +68,10 @@ public class AdminController{
     Servicedao servicedao;
     @Autowired
     Facilitiesdao facilitiesdao;
+    @Autowired
+    Paiddao paiddao;
+    @Autowired
+    Salarydao salarydao;
 
     @GetMapping("/listresidents")
     public ModelAndView listresidents(){
@@ -328,6 +336,40 @@ public class AdminController{
         facilitiesdao.delete(facilityid);
 
         return "redirect:/admin/listfacilities";
+    }
+
+    @GetMapping("/makepayment")
+    public String makepayment(@RequestParam("projectid") int projectid, 
+    @RequestParam("vendorid") int vendorid, @RequestParam("amount") int amount){
+        paiddao.save(projectid, vendorid, amount);
+
+        return "redirect:/admin/listprojects";
+    }
+
+    @GetMapping("/viewpayments/{projectid}")
+    public ModelAndView payments(@PathVariable("projectid") int projectid){
+        List<Paid> payment=paiddao.findByproject(projectid);
+        ModelAndView model=new ModelAndView("listpayments");
+
+        model.addObject("payments", payment);
+        return model;
+    }
+
+    @GetMapping("/paysalary")
+    public String paysalary(@RequestParam("serviceid") int serviceid, 
+    @RequestParam("vendorid") int vendorid, @RequestParam("salary") int salary, @RequestParam("monthyear") String monthyear){
+        salarydao.save(serviceid, vendorid, salary, monthyear);
+
+        return "redirect:/admin/listservices";
+    }
+
+    @GetMapping("/viewsalary")
+    public ModelAndView viewsalary(@RequestParam("serviceid") int serviceid, @RequestParam("monthyear") String monthyear){
+       List<Salary> sal=salarydao.findByid(monthyear, serviceid);
+       ModelAndView model=new ModelAndView("viewsalary");
+       model.addObject("salaries",sal);
+
+       return model;
     }
 
 }

@@ -7,6 +7,7 @@ public class Maintenance{
     private int amount;
     private int ownerid;
     private int apartmentid;
+    private boolean paid;
 
     public void setMaintenanceid(int val){
         this.maintenanceid=val;
@@ -26,7 +27,13 @@ public class Maintenance{
     public void setYear(String val){
         this.year=val;
     }
+    public void setPaid(boolean val){
+        this.paid=val;
+    }
 
+    public boolean getPaid(){
+        return this.paid;
+    }
     public int getMaintenanceid(){
         return this.maintenanceid;
     }

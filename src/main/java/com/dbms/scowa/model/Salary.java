@@ -5,7 +5,7 @@ public class Salary{
     private int vendorid;
     private int salary;
     private int transactionid;
-    private String month;
+    private String monthyear;
 
     public void setServiceid(int val){
         this.serviceid=val;
@@ -19,23 +19,23 @@ public class Salary{
     public void setTransactionid(int val){
         this.transactionid=val;
     }
-    public void setMonth(String val){
-        this.month=val;
+    public void setMonthyear(String val){
+        this.monthyear=val;
     }
 
-    public int setServiceid(){
+    public int getServiceid(){
         return this.serviceid;
     }
-    public int setVendorid(){
+    public int getVendorid(){
         return this.vendorid;
     }
-    public int setSalary(){
+    public int getSalary(){
         return this.salary;
     }
-    public int setTransactionid(){
+    public int getTransactionid(){
         return this.transactionid;
     }
-    public String setMonth(){
-        return this.month;
+    public String getMonthyear(){
+        return this.monthyear;
     }
 }
