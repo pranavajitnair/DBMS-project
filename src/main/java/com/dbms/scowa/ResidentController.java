@@ -212,6 +212,7 @@ public class ResidentController {
             
             if(cur_year>year||(cur_year==year && cur_month>month)||(cur_year==year && cur_month==month && today>date)) test.add(false);
             else test.add(true);
+
         }
 
         model.addObject("bookings",booked);
@@ -230,8 +231,7 @@ public class ResidentController {
             bookingdao.delete(bookingid);
             ra.addAttribute("kz",0);
         }
-
-        ra.addAttribute("kz",1);
+        else ra.addAttribute("kz",1);
         return "redirect:/resident/viewbookings";
     }
 

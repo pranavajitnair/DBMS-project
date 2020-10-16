@@ -86,6 +86,7 @@ public class Maintenancedao{
                 o.setPhone(row.getString("phone"));
                 o.setApartmentid(row.getInt("apartmentid"));
                 o.setIsResident(row.getBoolean("isResident"));
+                o.setCity(row.getString("city"));
 
                 return o;
             }

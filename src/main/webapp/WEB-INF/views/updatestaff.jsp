@@ -29,7 +29,7 @@
             <input type="text" value="${staff.phone}" name="phone" class="form-control" id="phone"
             placeholder="phone" required ="true" >
             <input type="text" value="${staff.joinDate}" name="joinDate" class="form-control" id="joinDate"
-            placeholder="joinDate" required ="true" >
+            placeholder="joinDate" required ="true" readonly>
             <button type="submit">Update</button>
         </form:form>
     </body>

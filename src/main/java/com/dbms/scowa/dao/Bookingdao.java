@@ -135,7 +135,7 @@ public class Bookingdao {
     }
 
     public void delete(int bookingid){
-        String sql="delete from Booking where bookingid="+Integer.valueOf(bookingid);
+        String sql="delete from Booking where bookingid=?";
         jt.update(sql, bookingid);
     }
 }

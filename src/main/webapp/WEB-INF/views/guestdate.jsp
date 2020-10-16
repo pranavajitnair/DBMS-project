@@ -8,8 +8,8 @@
         </title>
     </head>
     <body>
-        <input type="text" value="date" name="date" id="date"
-            placeholder="date" required ="true">
+        <input type="text" name="date" id="date"
+            placeholder="dd/mm/yyyy" required ="true">
             <button  onclick="func()">
                 List
             </button> 

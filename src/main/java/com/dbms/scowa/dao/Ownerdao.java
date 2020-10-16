@@ -40,6 +40,7 @@ public class Ownerdao{
                 o.setPhone(row.getString("phone"));
                 o.setApartmentid(row.getInt("apartmentid"));
                 o.setIsResident(row.getBoolean("isResident"));
+                o.setCity(row.getString("city"));
 
                 return o;
             }
@@ -59,6 +60,11 @@ public class Ownerdao{
             pincode,phone,code,apartmentid,isResident,userid);
         }
         
+    }
+
+    public void update1(int userid,boolean isResdient){
+        String sql="update Owner set isResident=? where userid=?"; 
+        jt.update(sql, isResdient,userid);  
     }
 
     public void delete(int id){
@@ -84,6 +90,7 @@ public class Ownerdao{
                 o.setPhone(row.getString("phone"));
                 o.setApartmentid(row.getInt("apartmentid"));
                 o.setIsResident(row.getBoolean("isResident"));
+                o.setCity(row.getString("city"));
 
                 return o;
             }

@@ -81,9 +81,11 @@ public class OwnerController{
 
         String month=Integer.toString(Calendar.getInstance().get(Calendar.MONTH)+1);
         if(Calendar.getInstance().get(Calendar.MONTH)+1<10) month="0"+month;
+        String year=Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
+
         boolean kz=true;
         for(Maintenance ma:main){
-            if(ma.getMonth().equals(month)) kz=false;
+            if(ma.getMonth().equals(month) && ma.getYear().equals(year)) kz=false;
         }
 
         ModelAndView model=new ModelAndView("listmaintenance");
@@ -101,7 +103,15 @@ public class OwnerController{
         String year=Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
         int apartmentid=owner.getApartmentid();
 
-        maintenancedao.save(year, month, 5000, owner.getOwnerid(), apartmentid);
+        List<Maintenance> main=maintenancedao.findByownerid(owner.getOwnerid());
+        boolean kz=true;
+        for(Maintenance ma:main){
+            if(ma.getMonth().equals(month) && ma.getYear().equals(year)) kz=false;
+        }
+
+        if(kz){
+            maintenancedao.save(year, month, 5000, owner.getOwnerid(), apartmentid);
+        }
 
         return "redirect:/owner/listmaintenance";
     }

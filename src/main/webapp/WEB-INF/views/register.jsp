@@ -9,48 +9,59 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
     <head> 
         <meta http-equiv="Content-Type" content="text/html;  
         charset=ISO-8859-1"> 
+        <link rel="stylesheet" type="text/css" href="../../css/main.css">
         <title>Start Spring MVC</title> 
     </head> 
-    <body> 
-        <h1>Start here</h1> 
-        <form:form method="POST" modelAttribute="user">
-            <form:label path="username">Username</form:label>
+    <body>  
+        <div class="login-box">
+          <h2>Register</h2>
+        <form:form method="POST" modelAttribute="user" id="form1">
+            <!-- <form:label path="username">Username</form:label> -->
             <spring:bind path="username">
+              <div class="user-box">
                 <form:input
                 type="text"
                 path="username"
                 required="true"
                 placeholder="Username"
-              />
+              /> </div>
             </spring:bind>
             <spring:bind path="userid">
+              <div class="user-box">
                 <form:input
                 type="text"
                 path="userid"
                 required="true"
                 placeholder="Userid"
-              />
+              /></div>
             </spring:bind>
             <spring:bind path="password">
+              <div class="user-box">
                 <form:input
                 type="text"
                 path="password"
                 required="true"
                 placeholder="password"
-              />
+              /></div>
             </spring:bind>
             <spring:bind path="userType">
+              <div class="user-box">
                 <form:input
                 type="text"
                 path="userType"
                 required="true"
                 placeholder="userType"
-              />
+              /></div>
             </spring:bind>
-            <button type="submit"
-            >Submit</button>
+            <a style="cursor: pointer;" type="button" onclick="document.getElementById('form1').submit();">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              Sumbit
+          </a>
         </form:form>
 
-        
+      </div>
     </body> 
 </html> 

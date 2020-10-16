@@ -107,9 +107,12 @@ public class AdminController{
     public String deleteres(@PathVariable(value="userid") int userid){
         Resident resident=residentdao.findByid(userid);
         boolean isowner=resident.getIsOwner();
+        Owner owner=ownerdao.findByid(userid);
 
         if(isowner==true){
             residentdao.delete(userid);
+            ownerdao.update1(userid, false);
+            System.out.println(owner.getOwnerName());
         }
         else{
             userdao.delete(userid);
