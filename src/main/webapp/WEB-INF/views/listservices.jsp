@@ -38,6 +38,9 @@
 	<div class="limiter">
 		<div class="container-table100">
 			<div class="wrap-table200">
+                <button class="button" onclick="window.location.href='/admin/addservice'">
+                    Add +
+                </button> <br><br>
 				<div class="table100 ver1 m-b-110">
 					<div class="table100-head">
 						<table>

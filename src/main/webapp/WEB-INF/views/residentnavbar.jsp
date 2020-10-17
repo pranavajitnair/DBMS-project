@@ -32,9 +32,19 @@ uri="http://www.springframework.org/tags" %>
             </li> 
             <li class="nav-item active">
                 <a class="nav-link" href="/resident/viewbookings?kz=0">List Bookings</a>
-              </li> 
+              </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/viewonly/projects">View Projects</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/viewonly/services">View Services</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/viewonly/vendors">View Vendors</a>
+            </li>
           </ul>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="window.location.href='/logout'">Logout</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="window.location.href='/changepassword?kz=0'">Change Password</button>
+                &nbsp;&nbsp;<button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="window.location.href='/logout'">Logout</button>
         </div>
       </nav>
 

@@ -28,6 +28,9 @@ uri="http://www.springframework.org/tags" %>
               <a class="nav-link" href="/admin/home">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
+              <a class="nav-link" href="/admin/register">Register User</a>
+            </li> 
+            <li class="nav-item active">
               <a class="nav-link" href="/admin/listresidents">List Residents</a>
             </li> 
             <li class="nav-item active">
@@ -49,7 +52,8 @@ uri="http://www.springframework.org/tags" %>
                 <a class="nav-link" href="/admin/liststaffs">List Staff</a>
             </li>
           </ul>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="window.location.href='/logout'">Logout</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="window.location.href='/changepassword?kz=0'">Change Password</button>
+                &nbsp;&nbsp;<button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="window.location.href='/logout'">Logout</button>
         </div>
       </nav>
 

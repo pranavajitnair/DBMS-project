@@ -264,6 +264,11 @@ th, td {
   padding-left: 15px;
 }
 
+.column18 {
+  width: 25%;
+  padding-left: 60px;
+}
+
 .table100-head th {
   padding-top: 18px;
   padding-bottom: 18px;

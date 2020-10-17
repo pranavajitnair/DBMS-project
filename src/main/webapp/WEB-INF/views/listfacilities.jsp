@@ -38,6 +38,9 @@
 	<div class="limiter">
 		<div class="container-table100">
 			<div class="wrap-table100">
+				<button class="button" onclick="window.location.href='/admin/addfacilities'">
+                    Add +
+                </button> <br><br>
 				<div class="table100 ver3 m-b-110">
 					<div class="table100-head">
 						<table>
@@ -61,14 +64,14 @@
                                     <tr class="row100 body" >
                                         <td class="cell100 column5">${facility.facilityid}</td>
                                         <td class="cell100 column5">${facility.facilityName}</td>
-                                        <td class="cell100 column5">${facility.amountPerHour}</td> 
-                                        <td class="cell100 column5"><button class="button" onclick="window.location.href='/admin/deletefacilities/${facility.facilityid}'">
-                                            Delete
-                                        </button></td>
-                                        <td class="cell100 column5">
+										<td class="cell100 column5">${facility.amountPerHour}</td> 
+										<td class="cell100 column5">
                                             <button class="button" onclick="window.location.href='/admin/updatefacilities/${facility.facilityid}'">
                                             Update</button>
                                         </td>
+                                        <td class="cell100 column5"><button class="button" onclick="window.location.href='/admin/deletefacilities/${facility.facilityid}'">
+                                            Delete
+                                        </button></td>
                                     </tr>
                                 </c:forEach>
 							</tbody>

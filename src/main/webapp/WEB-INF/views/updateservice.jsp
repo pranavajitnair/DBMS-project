@@ -6,11 +6,9 @@
         <title>
             Update service
         </title>
+        <link rel="stylesheet" type="text/css" href="../../css/form.css">
     </head>
     <body>
-        <h1>
-            Update details
-        </h1>
         <form:form method="post" modelAttribute="service" action="/admin/updateservice" role="form">
             <input type="text" value="${service.serviceid}" name="serviceid" class="form-control" id="serviceid"
             placeholder="serviceid" required ="true" readonly>
@@ -30,7 +28,7 @@
             placeholder="fund" required ="true" >
             <input type="text" value="${service.numOfPeople}" name="numOfPeople" class="form-control" id="numOfPeople"
             placeholder="numOfPeople" required ="true" >
-            <button type="submit">Update</button>
+            <input type="submit" value="Update" style="cursor: pointer;" />
         </form:form>
     </body>
 </html>

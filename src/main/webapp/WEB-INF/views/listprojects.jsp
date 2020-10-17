@@ -38,12 +38,15 @@
 	<div class="limiter">
 		<div class="container-table100">
 			<div class="wrap-table100">
+                <button class="button" onclick="window.location.href='/admin/addproject'">
+                    Add +
+                </button> <br><br>
 				<div class="table100 ver2 m-b-110">
 					<div class="table100-head">
 						<table>
 							<thead>
 								<tr class="row100 head">
-                                    <th class="cell100 column1">ID</th>
+                                    <th class="cell100 column1">Project ID</th>
                                     <th class="cell100 column1">Funds Allocated</th>
                                     <th class="cell100 column1">Start Date</th> 
                                     <th class="cell100 column1">End Date</th> 

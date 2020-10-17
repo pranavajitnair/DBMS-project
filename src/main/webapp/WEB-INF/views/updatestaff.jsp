@@ -6,11 +6,10 @@
         <title>
             Update Staff
         </title>
+        <link rel="stylesheet" type="text/css" href="../../css/form.css">
     </head>
     <body>
-        <h1>
-            Update details
-        </h1>
+
         <form:form method="post" modelAttribute="staff" action="/staff/update" role="form">
             <input type="text" value="${staff.staffid}" name="staffid" class="form-control" id="staffid"
             placeholder="staffid" required ="true" readonly>
@@ -30,7 +29,7 @@
             placeholder="phone" required ="true" >
             <input type="text" value="${staff.joinDate}" name="joinDate" class="form-control" id="joinDate"
             placeholder="joinDate" required ="true" readonly>
-            <button type="submit">Update</button>
+            <input type="submit" value="Update" style="cursor: pointer;" />
         </form:form>
     </body>
 </html>

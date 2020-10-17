@@ -6,11 +6,9 @@
         <title>
             Update Owner
         </title>
+        <link rel="stylesheet" type="text/css" href="../../css/form.css">
     </head>
     <body>
-        <h1>
-            Update details
-        </h1>
         <form:form method="post" modelAttribute="owner" action="/owner/update" role="form">
             <input type="text" value="${owner.ownerid}" name="ownerid" class="form-control" id="ownerid"
             placeholder="ownerid" required ="true" readonly>
@@ -40,7 +38,7 @@
             placeholder="isResident" required ="true" readonly>
             <input type="text" value="${owner.phone}" name="phone" class="form-control" id="phone"
             placeholder="phone" required ="true" >
-            <button type="submit">Update</button>
+            <input type="submit" value="Update" style="cursor: pointer;" />
         </form:form>
     </body>
 </html>

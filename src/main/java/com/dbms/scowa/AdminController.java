@@ -73,6 +73,11 @@ public class AdminController{
     @Autowired
     Salarydao salarydao;
 
+    @GetMapping("/home")
+    public String home(){
+        return "admin";
+    }
+
     @GetMapping("/listresidents")
     public ModelAndView listresidents(){
         ModelAndView model=new ModelAndView("listresidents");
@@ -107,12 +112,11 @@ public class AdminController{
     public String deleteres(@PathVariable(value="userid") int userid){
         Resident resident=residentdao.findByid(userid);
         boolean isowner=resident.getIsOwner();
-        Owner owner=ownerdao.findByid(userid);
 
         if(isowner==true){
             residentdao.delete(userid);
             ownerdao.update1(userid, false);
-            System.out.println(owner.getOwnerName());
+            userdao.update1(userid,"owner");
         }
         else{
             userdao.delete(userid);

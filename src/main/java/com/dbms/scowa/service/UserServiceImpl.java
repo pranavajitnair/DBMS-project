@@ -25,4 +25,11 @@ public class UserServiceImpl implements UserService{
     public User findByid(int id){
         return userRepository.findByid(id);
     }
+
+    @Override
+    public void updatepass(int id,String pass){
+        String password=bCryptPasswordEncoder.encode(pass);
+        userRepository.update(id, password);
+    }
+
 }

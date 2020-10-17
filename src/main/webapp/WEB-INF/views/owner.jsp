@@ -45,10 +45,13 @@ uri="http://www.springframework.org/tags" %>
                 <button class="button" onclick="window.location.href='/owner/update/${owner.userid}'">
                     Update Details
                 </button> &nbsp;&nbsp;
+                <button class="button" onclick="window.location.href='/apartment/find'">
+                    Find Apartment
+                </button>&nbsp;&nbsp;
                 <c:choose>
                         <c:when test="${owner.isResident}">
                             <button class="button" onclick="window.location.href='/resident/home'">
-                                Switch to Owner Page
+                                Go to Resident Page
                             </button>
                         </c:when>
                     </c:choose>

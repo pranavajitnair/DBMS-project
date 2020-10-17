@@ -12,48 +12,38 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
         <link rel="stylesheet" type="text/css" href="../../css/main.css">
         <title>Start Spring MVC</title> 
     </head> 
-    <body>  
+    <body onload="func()">  
         <div class="login-box">
-          <h2>Register</h2>
-        <form:form method="POST" modelAttribute="user" id="form1">
-            <!-- <form:label path="username">Username</form:label> -->
-            <spring:bind path="username">
-              <div class="user-box">
-                <form:input
-                type="text"
-                path="username"
-                required="true"
-                placeholder="User name"
-              /> </div>
-            </spring:bind>
-            <spring:bind path="userid">
-              <div class="user-box">
-                <form:input
-                type="text"
-                path="userid"
-                required="true"
-                placeholder="User id"
-              /></div>
-            </spring:bind>
-            <spring:bind path="password">
+          <h2>Change Password</h2>
+        <form:form method="POST" modelAttribute="password" id="form1">
+            <spring:bind path="op">
               <div class="user-box">
                 <form:input
                 type="password"
-                path="password"
+                path="op"
                 required="true"
-                placeholder="password minimum 8 characters"
-              /></div>
+                placeholder="password"
+              /> </div>
             </spring:bind>
-            <spring:bind path="userType">
+            <spring:bind path="np1">
               <div class="user-box">
                 <form:input
-                type="text"
-                path="userType"
+                type="password"
+                path="np1"
                 required="true"
-                placeholder="userType"
+                placeholder="new password minimum 8 characters"
               /></div>
             </spring:bind>
-            <a style="cursor: pointer;" type="button" onclick="func()">
+            <spring:bind path="np2">
+              <div class="user-box">
+                <form:input
+                type="password"
+                path="np2"
+                required="true"
+                placeholder="re enter new password"
+              /></div>
+            </spring:bind>
+            <a style="cursor: pointer;" type="button" onclick="func1()">
               <span></span>
               <span></span>
               <span></span>
@@ -61,17 +51,26 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
               Sumbit
           </a>
         </form:form>
+
       </div>
-      <script>
+    </body> 
+    <script>
         function func(){
-            pass=document.getElementById("form1").elements[2].value;
+            const params=new URLSearchParams(window.location.search);
+            kz=params.get('kz');
+            if(kz==1){
+                alert('Wrong password or the new passwords do not match');
+            }
+        }
+        function func1(){
+            pass=document.getElementById("form1").elements[1].value;
             if(pass.length<8){
-              alert('password too short');
+              alert("password too short");
             }
             else{
               document.getElementById('form1').submit();
+              alert('updated');
             }
         }
-      </script>
-    </body> 
+    </script>
 </html> 

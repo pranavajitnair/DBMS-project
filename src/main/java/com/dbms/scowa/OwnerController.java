@@ -70,7 +70,6 @@ public class OwnerController{
         owner.getCode(),owner.getHouseDetails(), owner.getStreet(), owner.getState(),
         owner.getPincode(), owner.getCountry(),owner.getPhone(), 
         owner.getApartmentid(),owner.getIsResident(), owner.getUserid());
-        System.out.println(owner.getOwnerName());
         return "redirect:/owner/home";
     }
 

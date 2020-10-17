@@ -5,14 +5,19 @@
  Transitional// EN" "http:// www.w3.org/TR/html4/loose.dtd"> 
 
  <html>
+     <head>
+        <link rel="stylesheet" type="text/css" href="../../css/form.css">
+     </head>
      <body>
-         <input placeholder="month" type="text" required id="month">
-         <input placeholder="year" type="text"  required id="year">
-         <button onclick="func()">Search</button>
+         <form id="form" action="javascript:func()">
+            <input placeholder="month (mm)" type="text" required id="month">
+            <input placeholder="year (yyyy)" type="text"  required id="year">
+            <input type="submit" value="Search" style="cursor: pointer;" />
+        </form>
          <script>
              function func(){
-                month=document.getElementById("month");
-                year=document.getElementById("year");
+                month=document.getElementById("form").elements[0];
+                year=document.getElementById("form").elements[1];
                 window.location = '/staff/notregisteredowners?month='+month.value+'&year='+year.value;
              }
          </script>

@@ -17,7 +17,7 @@ uri="http://www.springframework.org/tags" %>
 
   <body>
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Owner</a>
+        <a class="navbar-brand" href="#">Staff</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,20 +25,23 @@ uri="http://www.springframework.org/tags" %>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/owner/home">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/staff/home">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="/owner/listmaintenance">List Maintenance</a>
+              <a class="nav-link" href="/staff/listregistered">Get Registered Maintenance</a>
             </li> 
             <li class="nav-item active">
-              <a class="nav-link" href="/viewonly/projects">View Projects</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="/viewonly/services">View Services</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="/viewonly/vendors">View Vendors</a>
-            </li>
+                <a class="nav-link" href="/staff/listnotregistered">List Not Registered Users</a>
+              </li> 
+              <li class="nav-item active">
+                <a class="nav-link" href="/viewonly/projects">View Projects</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/viewonly/services">View Services</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/viewonly/vendors">View Vendors</a>
+              </li>
           </ul>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="window.location.href='/changepassword?kz=0'">Change Password</button>
                 &nbsp;&nbsp;<button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="window.location.href='/logout'">Logout</button>

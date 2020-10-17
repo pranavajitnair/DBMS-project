@@ -6,11 +6,9 @@
         <title>
             Update Vendor
         </title>
+        <link rel="stylesheet" type="text/css" href="../../css/form.css">
     </head>
     <body>
-        <h1>
-            Update details
-        </h1>
         <form:form method="post" modelAttribute="vendor" action="/admin/updatevendor" role="form">
             <input type="text" value="${vendor.vendorid}" name="vendorid" class="form-control" id="vendorid"
             placeholder="vendorid" required ="true" readonly>
@@ -34,7 +32,7 @@
             placeholder="email" required ="true">
             <input type="text" value="${vendor.phone}" name="phone" class="form-control" id="phone"
             placeholder="phone" required ="true" >
-            <button type="submit">Update</button>
+            <input type="submit" value="Update" style="cursor: pointer;" />
         </form:form>
     </body>
 </html>

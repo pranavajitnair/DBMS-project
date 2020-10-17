@@ -27,8 +27,15 @@ uri="http://www.springframework.org/tags" %>
             <li class="nav-item active">
               <a class="nav-link" href="/security/listguests">Home <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/security/findbydate">Search By Date<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/security/listguestsmonth">List by Current Month<span class="sr-only">(current)</span></a>
+            </li>
           </ul>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="window.location.href='/logout'">Logout</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="window.location.href='/changepassword?kz=0'">Change Password</button>
+                &nbsp;&nbsp;<button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="window.location.href='/logout'">Logout</button>
         </div>
       </nav>
 

@@ -47,6 +47,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/owner", "/owner/**").access("hasAnyAuthority('owner','residentowner')");
         http.authorizeRequests().antMatchers("/staff/**").access("hasAuthority('staff')");
         http.authorizeRequests().antMatchers("/security", "/security/**").access("hasAnyAuthority('security')");
+        http.authorizeRequests().antMatchers("/viewonly","/viewonly/**").access("hasAnyAuthority('resident','residentowner','staff','owner','admin')");
+        http.authorizeRequests().antMatchers("/changepassword","/changepassword/").access("hasAnyAuthority('resident','residentowner','staff','owner','admin','security')");
+        http.authorizeRequests().antMatchers("/apartment", "/apartment/**").access("hasAnyAuthority('owner','residentowner','resident')");
 
         http.authorizeRequests().and().formLogin().loginProcessingUrl("/j_spring_security_check")
                 .defaultSuccessUrl("/welcome").usernameParameter("userid")

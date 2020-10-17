@@ -8,9 +8,6 @@
         </title>
     </head>
     <body>
-        <h1>
-            Update details
-        </h1>
         <form:form method="post" modelAttribute="guest" action="/security/updateguest" role="form">
             <input type="text" value="${guest.guestid}" name="guestid" class="form-control" id="guestid"
             placeholder="guestid" required ="true" readonly>
@@ -30,7 +27,7 @@
             placeholder="date" required ="true" readonly>
             <input type="text" value="${guest.visited}" name="visited" class="form-control" id="visited"
             placeholder="visited" required ="true" readonly>
-            <button type="submit">Update</button>
+            <input type="submit" value="Update" style="cursor: pointer;" />
         </form:form>
     </body>
 </html>

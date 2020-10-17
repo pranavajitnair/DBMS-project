@@ -2,7 +2,23 @@
     pageEncoding="ISO-8859-1" isELIgnored="false" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
-<jsp:include page="residentnavbar.jsp" />
+<c:choose>
+    <c:when test="${kz==0}">
+        <jsp:include page="adminnavbar.jsp" />
+    </c:when>
+    <c:when test="${kz==1}">
+        <jsp:include page="residentnavbar.jsp" />
+    </c:when>
+    <c:when test="${kz==2}">
+        <jsp:include page="residentnavbar.jsp" />
+    </c:when>
+    <c:when test="${kz==3}">
+        <jsp:include page="ownernavbar.jsp" />
+    </c:when>
+    <c:when test="${kz==4}">
+        <jsp:include page="staffnavbar.jsp" />
+    </c:when>
+</c:choose>
 <!DOCTYPE html PUBLIC "-// W3C// DTD HTML 4.01  
  Transitional// EN" "http:// www.w3.org/TR/html4/loose.dtd"> 
 
@@ -32,60 +48,50 @@
 </head>
 <body>
     <div class="header">
-        <h1>Profile</h1>
+        <h1>List of Services</h1>
       </div>
     
 	<div class="limiter">
 		<div class="container-table100">
-			<div class="wrap-table100">
-                <button class="button" onclick="window.location.href='/resident/update/${resident.userid}'">
-                    Update Details
-				</button> &nbsp;&nbsp;
-				<button class="button" onclick="window.location.href='/apartment/find'">
-                    Find Apartment
-                </button>&nbsp;&nbsp;
-                <c:choose>
-                    <c:when test="${resident.isOwner}">
-                        <button class="button" onclick="window.location.href='/owner/home'">
-                            Go to Owner Page
-                        </button>
-                    </c:when>
-                </c:choose>
-                <br><br>
-				<div class="table100 ver2 m-b-110">
+			<div class="wrap-table200">
+				<div class="table100 ver1 m-b-110">
 					<div class="table100-head">
 						<table>
 							<thead>
 								<tr class="row100 head">
-                                    <th class="cell100 column14">Resident ID</th>
-                                    <th class="cell100 column14">Resident name</th>
-                                    <th class="cell100 column14">Contact Number</th> 
-                                    <th class="cell100 column14">Number of Family members</th> 
-                                    <th class="cell100 column14">Bank IFSC code</th> 
-                                    <th class="cell100 column14">User ID</th> 
-                                    <th class="cell100 column14">Apartment ID</th>  
-                                    <th class="cell100 column14">Has Ownership</th> 
+                                    <th class="cell100 column2">Service ID</th>
+                                    <th class="cell100 column2">Service Name</th>
+                                    <th class="cell100 column2">Funds Allocated</th>
+                                    <th class="cell100 column2">Daily start time</th> 
+                                    <th class="cell100 column2">Daily end time</th> 
+                                    <th class="cell100 column2">Vendor ID</th> 
+                                    <th class="cell100 column2">Short Description</th> 
+                                    <th class="cell100 column2">People Involved</th>
+                                    <th class="cell100 column2">Monthly Amount</th>
 								</tr>
 							</thead>
 						</table>
 					</div>
-                    <br>
+
 					<div class="table100-body js-pscroll">
 						<table>
 							<tbody>
                                 <tr>
-                                    <td></td>
+                                    <td>   </td>
                                 </tr>
-                                <tr class="row100 body" >
-                                    <td class="cell100 column14">${resident.residentid}</td>
-                                    <td class="cell100 column14">${resident.residentName}</td>
-                                    <td class="cell100 column14">${resident.phone}</td> 
-                                    <td class="cell100 column14">${resident.numOfMembers}</td> 
-                                    <td class="cell100 column14">${resident.code}</td> 
-                                    <td class="cell100 column14">${resident.userid}</td> 
-                                    <td class="cell100 column14">${resident.apartmentid}</td>  
-                                    <td class="cell100 column14">${resident.isOwner}</td>
-                                </tr>
+                                <c:forEach items="${services}" var="service">
+                                    <tr class="row100 body" >
+                                        <td class="cell100 column2">${service.serviceid}</td>
+                                        <td class="cell100 column2">${service.name}</td>
+                                        <td class="cell100 column2">${service.fund}</td>
+                                        <td class="cell100 column2">${service.startTime}</td> 
+                                        <td class="cell100 column2">${service.endTime}</td> 
+                                        <td class="cell100 column2">${service.vendorid}</td> 
+                                        <td class="cell100 column2">${service.description}</td> 
+                                        <td class="cell100 column2">${service.numOfPeople}</td>
+                                        <td class="cell100 column2">${service.monthlyAmount}</td>
+                                    </tr>
+                                </c:forEach>
 							</tbody>
                         </table>
 					</div>

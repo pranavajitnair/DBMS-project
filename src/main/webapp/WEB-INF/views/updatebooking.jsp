@@ -6,11 +6,9 @@
         <title>
             Update Booking
         </title>
+        <link rel="stylesheet" type="text/css" href="../../css/form.css">
     </head>
     <body onload="popup('${kz}')">
-        <h1>
-            Update details
-        </h1>
         <form:form method="post" modelAttribute="book" action="/resident/updatebooking" role="form">
             <input type="text" value="${book.bookingid}" name="bookingid" class="form-control" id="bookingid"
             placeholder="bookingid" required ="true" readonly>
@@ -28,7 +26,7 @@
             placeholder="date" required ="true" readonly>
             <input type="text" value="${book.phone}" name="phone" class="form-control" id="phone"
             placeholder="phone" required ="true">
-            <button type="submit">Update</button>
+            <input type="submit" value="Update" style="cursor: pointer;" />
         </form:form>
         <script>
             function popup(kz){

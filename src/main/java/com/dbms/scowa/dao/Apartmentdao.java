@@ -37,4 +37,19 @@ public class Apartmentdao{
         });
 
     }
+
+    public Apartment findByName(String tower, String flat){
+        String sql="select * from Apartment where towerName like "+"'"+tower+"'"+" and flatName like "+"'"+flat+"'";
+        return jt.queryForObject(sql,new RowMapper<Apartment>(){
+            public Apartment mapRow(ResultSet row,int rowNum) throws SQLException{
+                Apartment a=new Apartment();
+                a.setApartmentid(row.getInt("apartmentid"));
+                a.setTowerName(row.getString("towerName"));
+                a.setFlatName(row.getString("flatName"));
+                a.setTowerid(row.getInt("towerid"));
+
+                return a;
+            }
+        });
+    }
 }

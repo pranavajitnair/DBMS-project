@@ -12,9 +12,16 @@ import com.dbms.scowa.dao.Residentdao;
 import com.dbms.scowa.dao.Apartmentdao;
 import com.dbms.scowa.dao.Userdao;
 import com.dbms.scowa.dao.Staffdao;
-
+import com.dbms.scowa.dao.Vendordao;
+import com.dbms.scowa.dao.Servicedao;
+import com.dbms.scowa.dao.Projectdao;
+import com.dbms.scowa.model.Apartment;
 import com.dbms.scowa.model.Owner;
 import com.dbms.scowa.model.Resident;
+import com.dbms.scowa.model.Project;
+import com.dbms.scowa.model.Vendor;
+import com.dbms.scowa.model.Service;
+import com.dbms.scowa.model.Password;
 
 import java.security.Principal;
 
@@ -24,7 +31,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.List;
 
 @Controller
 public class LoginController{
@@ -37,7 +48,23 @@ public class LoginController{
     private Residentdao residentdao;
     @Autowired
     private Staffdao staffdao;
+    @Autowired
+    private Projectdao projectdao;
+    @Autowired
+    private Vendordao vendordao;
+    @Autowired
+    private Servicedao servicedao;
+    @Autowired
+    private Apartmentdao apartmentdao;
     
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @RequestMapping("/")
+    public String add(){
+        return "test";
+    }
+
     @GetMapping("/admin/register")
     public String register(Model model){
         model.addAttribute("user",new User());
@@ -72,10 +99,9 @@ public class LoginController{
             owner.getCode(),owner.getHouseDetails(), owner.getStreet(), owner.getState(),
             owner.getPincode(), owner.getCountry(),owner.getPhone(), 
             -1,true, owner.getUserid());
-            System.out.println(owner.getOwnerName());
         }
 
-        return "test";
+        return "admin";
     }
 
     @GetMapping("/welcome")
@@ -88,11 +114,116 @@ public class LoginController{
             return "redirect:/owner/home";
         }
         else if(user.getUserType().equals("security")){
-            return "redirect:/security/addguest";
+            return "redirect:/security/listguests";
         }
         else if(user.getUserType().equals("staff")){
             return "redirect:/staff/home";
         }
-        return "redirect:/admin";
+        return "redirect:/admin/home";
     }
+
+    @GetMapping("/viewonly/projects")
+    public ModelAndView viewprojects(Principal principal){
+        ModelAndView model=new ModelAndView("viewprojects");
+        List<Project> projects=projectdao.showall();
+        model.addObject("projects",projects);
+
+        User user=userService.findByid(Integer.valueOf(principal.getName()));
+        String type=user.getUserType();
+
+        int kz=0;
+        if(type.equals("resident")) kz=1;
+        else if(type.equals("residentowner")) kz=2;
+        else if(type.equals("owner")) kz=3;
+        else if(type.equals("staff")) kz=4;
+        model.addObject("kz", kz);
+
+        return model;
+    }
+
+    @GetMapping("/viewonly/services")
+    public ModelAndView viewservices(Principal principal){
+        ModelAndView model=new ModelAndView("viewservices");
+        List<Service> services=servicedao.showall();
+        model.addObject("services",services);
+
+        User user=userService.findByid(Integer.valueOf(principal.getName()));
+        String type=user.getUserType();
+
+        int kz=0;
+        if(type.equals("resident")) kz=1;
+        else if(type.equals("residentowner")) kz=2;
+        else if(type.equals("owner")) kz=3;
+        else if(type.equals("staff")) kz=4;
+        model.addObject("kz", kz);
+
+        return model;
+    }
+
+    @GetMapping("/viewonly/vendors")
+    public ModelAndView viewvendors(Principal principal){
+        ModelAndView model=new ModelAndView("viewvendors");
+        List<Vendor> vendors=vendordao.showall();
+        model.addObject("vendors",vendors);
+
+        User user=userService.findByid(Integer.valueOf(principal.getName()));
+        String type=user.getUserType();
+
+        int kz=0;
+        if(type.equals("resident")) kz=1;
+        else if(type.equals("residentowner")) kz=2;
+        else if(type.equals("owner")) kz=3;
+        else if(type.equals("staff")) kz=4;
+        model.addObject("kz", kz);
+
+        return model;
+    }
+
+    @GetMapping("/changepassword")
+    public String changepassword(Model model, @RequestParam("kz") int kz){
+        model.addAttribute("password",new Password());
+
+        return "changepassword";
+    }
+
+    @PostMapping("/changepassword")
+    public String changepassword(@ModelAttribute("password") Password password, BindingResult bindingResult, Principal principal, RedirectAttributes ra){
+
+            User user=userService.findByid(Integer.valueOf(principal.getName()));
+            boolean matches=bCryptPasswordEncoder.matches(password.getOp(), user.getPassword());
+            if(matches==true){
+                if(password.getNp1().equals(password.getNp2())){
+                    userService.updatepass(user.getUserid(), password.getNp2());
+
+                    return "redirect:/welcome";
+                }
+            }
+            
+            ra.addAttribute("kz", 1);
+            return "redirect:/changepassword";
+    }
+
+    @GetMapping("/apartment/view")
+    public ModelAndView viewapartment(@RequestParam("tower") String tower, @RequestParam("flat") String flat, Principal principal){
+        Apartment apartment=apartmentdao.findByName(tower, flat);
+        ModelAndView model=new ModelAndView("viewapartment");
+        model.addObject("apartment", apartment);
+
+        User user=userService.findByid(Integer.valueOf(principal.getName()));
+        String type=user.getUserType();
+
+        int kz=0;
+        if(type.equals("resident")) kz=1;
+        else if(type.equals("residentowner")) kz=2;
+        else if(type.equals("owner")) kz=3;
+        model.addObject("kz", kz);
+        
+        return model;
+    }
+
+    @GetMapping("/apartment/find")
+    public String findapartment(){
+        return "apartment";
+    }
+
 }

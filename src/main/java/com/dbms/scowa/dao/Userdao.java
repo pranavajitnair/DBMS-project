@@ -42,4 +42,14 @@ public class Userdao{
         String sql="delete from user where userid=?";
         jt.update(sql,id);
     }
+
+    public void update(int id,String pass){
+        String sql="update user set password=? where userid=?";
+        jt.update(sql,pass,id);
+    }
+
+    public void update1(int id, String type){
+        String sql="update user set userType=? where userid=?";
+        jt.update(sql,type,id);
+    }
 }

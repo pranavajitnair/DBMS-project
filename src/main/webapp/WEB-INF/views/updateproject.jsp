@@ -6,11 +6,9 @@
         <title>
             Update project
         </title>
+        <link rel="stylesheet" type="text/css" href="../../css/form.css">
     </head>
     <body>
-        <h1>
-            Update details
-        </h1>
         <form:form method="post" modelAttribute="project" action="/admin/updateproject" role="form">
             <input type="text" value="${project.projectid}" name="projectid" class="form-control" id="projectid"
             placeholder="projectid" required ="true" readonly>
@@ -24,7 +22,7 @@
             placeholder="endTime" required ="true" >
             <input type="text" value="${project.fund}" name="fund" class="form-control" id="fund"
             placeholder="fund" required ="true" >
-            <button type="submit">Update</button>
+            <input type="submit" value="Update" style="cursor: pointer;" />
         </form:form>
     </body>
 </html>
