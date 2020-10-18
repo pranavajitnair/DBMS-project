@@ -17,17 +17,17 @@
             <input type="text" value="${service.description}" name="description" class="form-control" id="description"
             placeholder="description" required ="true">
             <input type="text" value="${service.startTime}" name="startTime" class="form-control" id="startTime"
-            placeholder="startTime" required ="true" >
+            placeholder="start time" required ="true" >
             <input type="text" value="${service.endTime}" name="endTime" class="form-control" id="endTime"
-            placeholder="endTime" required ="true" >
+            placeholder="end time" required ="true" >
             <input type="text" value="${service.monthlyAmount}" name="monthlyAmount" class="form-control" id="monthlyAmount"
-            placeholder="monthlyAmount" required ="true" >
+            placeholder="monthly Amount" required ="true" >
             <input type="text" value="${service.name}" name="name" class="form-control" id="name"
             placeholder="name" required ="true" >
             <input type="text" value="${service.fund}" name="fund" class="form-control" id="fund"
-            placeholder="fund" required ="true" >
+            placeholder="funds allocated" required ="true" >
             <input type="text" value="${service.numOfPeople}" name="numOfPeople" class="form-control" id="numOfPeople"
-            placeholder="numOfPeople" required ="true" >
+            placeholder="num of People Involved" required ="true" >
             <input type="submit" value="Update" style="cursor: pointer;" />
         </form:form>
     </body>

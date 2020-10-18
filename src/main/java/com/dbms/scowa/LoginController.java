@@ -35,6 +35,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Controller
@@ -75,19 +76,29 @@ public class LoginController{
     @PostMapping("/admin/register")
     public String register(@ModelAttribute("user") User user, BindingResult bindingResult){
         
+        int day=Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        int year=Calendar.getInstance().get(Calendar.YEAR);
+        int month=Calendar.getInstance().get(Calendar.MONTH)+1;
+        String day1=Integer.toString(day);
+        String month1=Integer.toString(month);
+        String year1=Integer.toString(year);
+        if(day<10) day1="0"+day1;
+        if(month<10) month1="0"+month1;
+        String date=day1+"/"+month1+"/"+year1;
+
         userService.save(user);
         String type=user.getUserType();
         if(type.equals("staff")){
-            staffdao.save(user.getUserid());
+            staffdao.save(user.getUserid(),date);
         }
         else if(type.equals("resident")){
             residentdao.save(user.getUserid());
         }
         else if(type.equals("owner")){
-            ownerdao.save(user.getUserid());
+            ownerdao.save(user.getUserid(),date);
         }
         else if(type.equals("residentowner")){
-            ownerdao.save(user.getUserid());
+            ownerdao.save(user.getUserid(),date);
             residentdao.save(user.getUserid());
             Resident resident=residentdao.findByid(user.getUserid());
             Owner owner=ownerdao.findByid(user.getUserid());

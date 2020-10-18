@@ -6,19 +6,20 @@
         <title>
             Update Guest
         </title>
+        <link rel="stylesheet" type="text/css" href="../../css/form.css">
     </head>
     <body>
         <form:form method="post" modelAttribute="guest" action="/security/updateguest" role="form">
             <input type="text" value="${guest.guestid}" name="guestid" class="form-control" id="guestid"
-            placeholder="guestid" required ="true" readonly>
+            placeholder="Guest ID" required ="true" readonly>
             <input type="text" value="${guest.name}" name="name" class="form-control" id="name"
-            placeholder="name" required ="true" readonly>
+            placeholder="Name" required ="true" readonly>
             <input type="text" value="${guest.purposeOfVisit}" name="purposeOfVisit" class="form-control" id="purposeOfVisit"
-            placeholder="purposeOfVisit" required ="true" readonly>
+            placeholder="Purpose of Visit" required ="true" readonly>
             <input type="text" value="${guest.entryTime}" name="entryTime" class="form-control" id="entryTime"
-            placeholder="entryTime" required ="true" readonly>
+            placeholder="entry time (hh:mm)" required ="true" readonly>
             <input type="text" value="${guest.exitTime}" name="exitTime" class="form-control" id="exitTime"
-            placeholder="exitTime" required ="true" >
+            placeholder="exit time (hh:mm)" required ="true" >
             <input type="text" value="${guest.phone}" name="phone" class="form-control" id="phone"
             placeholder="phone" required ="true" readonly>
             <input type="text" value="${guest.category}" name="category" class="form-control" id="category"

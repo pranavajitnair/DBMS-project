@@ -13,15 +13,15 @@
             <input type="text" value="${project.projectid}" name="projectid" class="form-control" id="projectid"
             placeholder="projectid" required ="true" readonly>
             <input type="text" value="${project.vendorid}" name="vendorid" class="form-control" id="vendorid"
-            placeholder="vendorid" required ="true" >
+            placeholder="Vendor ID" required ="true" >
             <input type="text" value="${project.description}" name="description" class="form-control" id="description"
             placeholder="description" required ="true">
             <input type="text" value="${project.startTime}" name="startTime" class="form-control" id="startTime"
-            placeholder="startTime" required ="true" >
+            placeholder="start time" required ="true" >
             <input type="text" value="${project.endTime}" name="endTime" class="form-control" id="endTime"
-            placeholder="endTime" required ="true" >
+            placeholder="end time" required ="true" >
             <input type="text" value="${project.fund}" name="fund" class="form-control" id="fund"
-            placeholder="fund" required ="true" >
+            placeholder="funds allocated" required ="true" >
             <input type="submit" value="Update" style="cursor: pointer;" />
         </form:form>
     </body>

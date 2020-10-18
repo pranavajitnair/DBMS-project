@@ -84,6 +84,7 @@ public class GuestController {
         ModelAndView model=new ModelAndView("listguests");
         List<Guest> guests=guestdao.showall();
         model.addObject("guests",guests);
+        model.addObject("kz",true);
         return model;
     }
 
@@ -92,6 +93,7 @@ public class GuestController {
         ModelAndView model=new ModelAndView("listguests");
         List<Guest> guests=guestdao.findBydate(date);
         model.addObject("guests",guests);
+        model.addObject("kz",false);
         return model;
     }
 
@@ -105,6 +107,7 @@ public class GuestController {
         ModelAndView model=new ModelAndView("listguests");
         List<Guest> guests=guestdao.findByMonth();
         model.addObject("guests",guests);
+        model.addObject("kz",false);
         return model;
     }
 }

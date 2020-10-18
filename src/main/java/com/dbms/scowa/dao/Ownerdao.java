@@ -17,9 +17,9 @@ public class Ownerdao{
     @Autowired
     JdbcTemplate jt;
 
-    public void save(int userid){
-        String sql="insert into Owner(userid) values(?)";
-        jt.update(sql,userid);
+    public void save(int userid,String date){
+        String sql="insert into Owner(userid,dateOfPurchase) values(?,?)";
+        jt.update(sql,userid,date);
     }
 
     public Owner findByid(int id){

@@ -20,15 +20,15 @@
             <input type="text" value="${staff.houseDetails}" name="houseDetails" class="form-control" id="houseDetails"
             placeholder="houseDetails" required ="true" >
             <input type="text" value="${staff.code}" name="code" class="form-control" id="code"
-            placeholder="code" required ="true" >
+            placeholder="IFSC Code" required ="true" >
             <input type="text" value="${staff.street}" name="street" class="form-control" id="street"
             placeholder="street" required ="true" >
             <input type="text" value="${staff.dob}" name="dob" class="form-control" id="dob"
-            placeholder="dob" required ="true">
+            placeholder="Date of Birth (dd/mm/yyyy)" required ="true">
             <input type="text" value="${staff.phone}" name="phone" class="form-control" id="phone"
             placeholder="phone" required ="true" >
             <input type="text" value="${staff.joinDate}" name="joinDate" class="form-control" id="joinDate"
-            placeholder="joinDate" required ="true" readonly>
+            placeholder="Join Date" required ="true" readonly>
             <input type="submit" value="Update" style="cursor: pointer;" />
         </form:form>
     </body>

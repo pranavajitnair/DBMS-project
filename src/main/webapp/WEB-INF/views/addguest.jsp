@@ -34,7 +34,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
                 type="text"
                 path="entryTime"
                 required="true"
-                placeholder="entryTime"
+                placeholder="entry time (hh:mm)"
               />
                </div>
             </spring:bind>

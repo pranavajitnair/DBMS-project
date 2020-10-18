@@ -15,9 +15,9 @@
             <input type="text" value="${vendor.name}" name="name" class="form-control" id="name"
             placeholder="name" required ="true" >
             <input type="text" value="${vendor.monthlyAmount}" name="monthlyAmount" class="form-control" id="monthlyAmount"
-            placeholder="monthlyAmount" required ="true">
+            placeholder="monthly Amount" required ="true">
             <input type="text" value="${vendor.officeDetails}" name="officeDetails" class="form-control" id="officeDetails"
-            placeholder="officeDetails" required ="true" >
+            placeholder="office Details" required ="true" >
             <input type="text" value="${vendor.street}" name="street" class="form-control" id="street"
             placeholder="street" required ="true" >
             <input type="text" value="${vendor.state}" name="state" class="form-control" id="state"
@@ -27,7 +27,7 @@
             <input type="text" value="${vendor.pincode}" name="pincode" class="form-control" id="pincode"
             placeholder="pincode" required ="true" >
             <input type="text" value="${vendor.code}" name="code" class="form-control" id="code"
-            placeholder="code" required ="true" >
+            placeholder="IFSC Code" required ="true" >
             <input type="text" value="${vendor.email}" name="email" class="form-control" id="email"
             placeholder="email" required ="true">
             <input type="text" value="${vendor.phone}" name="phone" class="form-control" id="phone"

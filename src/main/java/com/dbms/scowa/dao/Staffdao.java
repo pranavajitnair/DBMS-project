@@ -19,9 +19,9 @@ public class Staffdao{
     @Autowired
     JdbcTemplate jt;
 
-    public void save(int userid){
-        String sql="insert into Staff(userid) values(?)";
-        jt.update(sql,userid);
+    public void save(int userid, String joindate){
+        String sql="insert into Staff(userid,joindate) values(?,?)";
+        jt.update(sql,userid,joindate);
     }
 
     public Staff findByid(int userid){
