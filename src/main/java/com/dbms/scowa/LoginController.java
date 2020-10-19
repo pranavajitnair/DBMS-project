@@ -10,12 +10,14 @@ import com.dbms.scowa.service.UserService;
 import com.dbms.scowa.dao.Ownerdao;
 import com.dbms.scowa.dao.Residentdao;
 import com.dbms.scowa.dao.Apartmentdao;
+import com.dbms.scowa.dao.ForgotPassdao;
 import com.dbms.scowa.dao.Userdao;
 import com.dbms.scowa.dao.Staffdao;
 import com.dbms.scowa.dao.Vendordao;
 import com.dbms.scowa.dao.Servicedao;
 import com.dbms.scowa.dao.Projectdao;
 import com.dbms.scowa.model.Apartment;
+import com.dbms.scowa.model.ForgotPass;
 import com.dbms.scowa.model.Owner;
 import com.dbms.scowa.model.Resident;
 import com.dbms.scowa.model.Project;
@@ -34,9 +36,15 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class LoginController{
@@ -57,20 +65,88 @@ public class LoginController{
     private Servicedao servicedao;
     @Autowired
     private Apartmentdao apartmentdao;
+    @Autowired
+    private Userdao userdao;
+    @Autowired
+    private ForgotPassdao passdao;
     
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private JavaMailSender mailSender;
 
     @RequestMapping("/")
     public String add(){
         return "test";
     }
 
+    private String getSaltString() {
+        String SALTCHARS="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt=new StringBuilder();
+        Random rnd=new Random();
+        while (salt.length()<18){ 
+            int index=(int)(rnd.nextFloat()*SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr=salt.toString();
+        return saltStr;
+    }
+
     @GetMapping("/admin/register")
     public String register(Model model){
-        model.addAttribute("user",new User());
+        User user=userdao.getmax();
+        User user1=new User();
+        String pass=this.getSaltString();
+        user1.setUserid(user.getUserid()+1);
+        user1.setPassword(pass);
+        model.addAttribute("user",user1);
 
         return "register";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model){
+        model.addAttribute("user", new User());
+
+        return "login";
+    }
+
+    @GetMapping("/forgot/updatepassword")
+    public String updatepassword(@RequestParam("userid") int userid, HttpServletRequest request){
+        User user=userService.findByid(userid);
+        String token=UUID.randomUUID().toString()+"lettheidbe="+Integer.toString(userid);
+        String appUrl=request.getScheme()+"://"+request.getServerName()+":"+Integer.toString(request.getServerPort())+"/forgot/resetpassword";
+        String url=appUrl+"?token="+token;
+        passdao.save(userid, token);
+        
+        SimpleMailMessage email = new SimpleMailMessage();
+        email.setTo(user.getUsername());
+        email.setSubject("Link to Change Password");
+        email.setText("Click on the link below to change your password\n"+url);	
+		mailSender.send(email);
+
+        return "gavelink";
+    }
+
+    @GetMapping("/forgot/resetpassword")
+    public ModelAndView reset(@RequestParam("token") String token){
+        ForgotPass pass=passdao.findByid(token);
+        User user=userService.findByid(pass.getUserid());
+        User user1=new User();
+        user1.setUserid(user.getUserid());
+        ModelAndView model=new ModelAndView("forgotpassword");
+
+        model.addObject("user", user1);
+
+        return model;
+    }
+
+    @PostMapping("/forgot/postpassword")
+    public String postpassword(@ModelAttribute("user") User user,BindingResult bindingResult){
+        userService.updatepass(user.getUserid(),user.getPassword());
+        passdao.delete();
+
+        return "redirect:/";
     }
 
     @PostMapping("/admin/register")
@@ -85,6 +161,12 @@ public class LoginController{
         if(day<10) day1="0"+day1;
         if(month<10) month1="0"+month1;
         String date=day1+"/"+month1+"/"+year1;
+
+        SimpleMailMessage email = new SimpleMailMessage();
+        email.setTo(user.getUsername());
+        email.setSubject("Userid and Password for SCOWA");
+        email.setText("Please update your password after first login\n"+"Your login id="+user.getUserid()+"\n"+"your password="+user.getPassword());	
+		mailSender.send(email);
 
         userService.save(user);
         String type=user.getUserType();

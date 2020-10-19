@@ -12,29 +12,19 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
         <link rel="stylesheet" type="text/css" href="../../css/main.css">
         <title>Start Spring MVC</title> 
     </head> 
-    <body>  
+    <body >  
         <div class="login-box">
-          <h2>Register</h2>
-        <form:form method="POST" modelAttribute="user" id="form1">
-            <!-- <form:label path="username">Username</form:label> -->
-            <spring:bind path="username">
-              <div class="user-box">
-                <form:input
-                type="email"
-                path="username"
-                required="true"
-                placeholder="User email"
-              /> </div>
-            </spring:bind>
+          <h2>Reset Password</h2>
+        <form:form method="POST" modelAttribute="user" id="form1" action="/forgot/postpassword">
             <spring:bind path="userid">
-              <div class="user-box">
+                <div class="user-box">
                 <form:input
-                type="text"
+                type="hidden"
                 path="userid"
                 required="true"
-                placeholder="User ID"
+                placeholder="userid"
                 readonly="true"
-              /></div>
+                /></div>
             </spring:bind>
             <spring:bind path="password">
               <div class="user-box">
@@ -42,40 +32,33 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
                 type="password"
                 path="password"
                 required="true"
-                placeholder="password minimum 8 characters"
-                readonly="true"
+                placeholder="new password"
+                value=""
               /></div>
             </spring:bind>
-            <spring:bind path="userType">
-              <div class="user-box">
-                <form:input
-                type="text"
-                path="userType"
-                required="true"
-                placeholder="userType"
-              /></div>
-            </spring:bind>
+            <div class="user-box">
+            <input type="password" required="true" placeholder="enter password again"/>
+            </div>
             <a style="cursor: pointer;" type="button" onclick="func()">
               <span></span>
               <span></span>
               <span></span>
               <span></span>
-              Sumbit
+              Update
           </a>
         </form:form>
       </div>
       <script>
         function func(){
-            pass=document.getElementById("form1").elements[2].value;
-            email=document.getElementById("form1").elements[0].value;
-            if(pass.length<8){
-              alert('password too short');
-            }
-            else if(!email.includes('@')){
-              alert('enter valid email id');
+            pass=document.getElementById("form1").elements[1].value;
+            pass1=document.getElementById("form1").elements[2].value;
+            if(pass.length<8 || pass.localeCompare(pass1)!=0){
+                alert('password too short or the 2 passwords do not match');
             }
             else{
-              document.getElementById('form1').submit();
+                document.getElementById("form1").elements[2].remove();
+                alert("password updated");
+                document.getElementById('form1').submit();
             }
         }
       </script>

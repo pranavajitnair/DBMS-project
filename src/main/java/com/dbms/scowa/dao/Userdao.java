@@ -52,4 +52,19 @@ public class Userdao{
         String sql="update user set userType=? where userid=?";
         jt.update(sql,type,id);
     }
+
+    public User getmax(){
+        String sql="select * from user where userid=(select max(userid) from user)";
+        return jt.queryForObject(sql,new RowMapper<User>(){
+            public User mapRow(ResultSet row,int rowNum) throws SQLException{
+                User u=new User();
+                u.setUserid(row.getInt("userid"));
+                u.setPassword(row.getString("password"));
+                u.setUsername(row.getString("username"));
+                u.setUserType(row.getString("userType"));
+
+                return u;
+            }
+        });
+    }
 }

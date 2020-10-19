@@ -12,20 +12,10 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
         <link rel="stylesheet" type="text/css" href="../../css/main.css">
         <title>Start Spring MVC</title> 
     </head> 
-    <body>  
+    <body onload="func1()">  
         <div class="login-box">
-          <h2>Register</h2>
-        <form:form method="POST" modelAttribute="user" id="form1">
-            <!-- <form:label path="username">Username</form:label> -->
-            <spring:bind path="username">
-              <div class="user-box">
-                <form:input
-                type="email"
-                path="username"
-                required="true"
-                placeholder="User email"
-              /> </div>
-            </spring:bind>
+          <h2>Sign In</h2>
+        <form:form method="POST" modelAttribute="user" id="form1" action="/j_spring_security_check">
             <spring:bind path="userid">
               <div class="user-box">
                 <form:input
@@ -33,7 +23,6 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
                 path="userid"
                 required="true"
                 placeholder="User ID"
-                readonly="true"
               /></div>
             </spring:bind>
             <spring:bind path="password">
@@ -42,17 +31,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
                 type="password"
                 path="password"
                 required="true"
-                placeholder="password minimum 8 characters"
-                readonly="true"
-              /></div>
-            </spring:bind>
-            <spring:bind path="userType">
-              <div class="user-box">
-                <form:input
-                type="text"
-                path="userType"
-                required="true"
-                placeholder="userType"
+                placeholder="password"
               /></div>
             </spring:bind>
             <a style="cursor: pointer;" type="button" onclick="func()">
@@ -60,23 +39,23 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
               <span></span>
               <span></span>
               <span></span>
-              Sumbit
-          </a>
+              Login
+          </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a onclick="func2()" type="button" style="font-size: xx-small; text-transform: lowercase; letter-spacing: 2px; cursor: pointer;"><u>Forgot Password?</u></a>
         </form:form>
       </div>
       <script>
         function func(){
-            pass=document.getElementById("form1").elements[2].value;
-            email=document.getElementById("form1").elements[0].value;
-            if(pass.length<8){
-              alert('password too short');
-            }
-            else if(!email.includes('@')){
-              alert('enter valid email id');
-            }
-            else{
               document.getElementById('form1').submit();
+        }
+        function func1(){
+            if(window.location.href.includes('error')){
+                alert('Wrong Credentials');
             }
+        }
+        function func2(){
+            userid=document.getElementById("form1").elements[0].value;
+            window.location='/forgot/updatepassword?userid='+userid;
         }
       </script>
     </body> 

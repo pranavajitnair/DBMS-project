@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.mail.javamail.JavaMailSender;
 
 import com.dbms.scowa.service.UserDetailsServiceImpl;
 
@@ -51,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/changepassword","/changepassword/").access("hasAnyAuthority('resident','residentowner','staff','owner','admin','security')");
         http.authorizeRequests().antMatchers("/apartment", "/apartment/**").access("hasAnyAuthority('owner','residentowner','resident')");
 
-        http.authorizeRequests().and().formLogin().loginProcessingUrl("/j_spring_security_check")
+        http.authorizeRequests().and().formLogin().loginPage("/login").loginProcessingUrl("/j_spring_security_check")
                 .defaultSuccessUrl("/welcome").usernameParameter("userid")
                 .passwordParameter("password").and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
 

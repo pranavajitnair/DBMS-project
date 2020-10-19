@@ -23,3 +23,5 @@ create table Maintenance( maintenanceid int auto_increment, month char(2) defaul
 create table Paid(transactionid int auto_increment, amount int default null, projectid int default null, vendorid int default null, primary key(transactionid), foreign key(vendorid) references Vendor(vendorid) on delete set null, foreign key(projectid) references Project(projectid) on delete cascade);
 
 create table Salary(transactionid int auto_increment, vendorid int default null, serviceid int default null, salary int default null, monthyear char(7) default null, primary key(transactionid), foreign key(vendorid) references Vendor(vendorid) on delete set null, foreign key(serviceid) references Service(serviceid) on delete cascade);
+
+create table ForgotPass( url varchar(200), userid int default null, primary key(url), foreign key(userid) references user(userid) on delete cascade);
