@@ -144,7 +144,7 @@ public class LoginController{
     @PostMapping("/forgot/postpassword")
     public String postpassword(@ModelAttribute("user") User user,BindingResult bindingResult){
         userService.updatepass(user.getUserid(),user.getPassword());
-        passdao.delete();
+        passdao.delete(user.getUserid());
 
         return "redirect:/";
     }

@@ -37,8 +37,8 @@ public class ForgotPassdao {
         });
     }
 
-    public void delete(){
-        String sql="delete from ForgotPass";
-        jt.update(sql);
+    public void delete(int userid){
+        String sql="delete from ForgotPass where userid=?";
+        jt.update(sql,userid);
     }
 }
