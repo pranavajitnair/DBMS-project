@@ -181,13 +181,13 @@ public class ResidentController {
 
     @PostMapping("/updatebooking")
     public String setbooking(@Valid @ModelAttribute("book") Booking book, BindingResult result, RedirectAttributes ra){
-        if(Integer.valueOf(book.getStartTime())<8||Integer.valueOf(book.getEndTime())>22||Integer.valueOf(book.getStartTime())>Integer.valueOf(book.getEndTime())){
+        if(Integer.valueOf(book.getStartTime().substring(0, 2))<8||Integer.valueOf(book.getEndTime().substring(0, 2))>22||Integer.valueOf(book.getStartTime().substring(0, 2))>Integer.valueOf(book.getEndTime().substring(0, 2))){
             ra.addAttribute("bookingid", -book.getBookingid());
             return "redirect:/resident/updatebookings";
         }
-
+        
         Facilities fac=facilitiesdao.findByid(book.getFacilityid());
-        int amount=fac.getAmountPerHour()*(Integer.valueOf(book.getEndTime())-Integer.valueOf(book.getStartTime()));
+        int amount=fac.getAmountPerHour()*(Integer.valueOf(book.getEndTime().substring(0, 2))-Integer.valueOf(book.getStartTime().substring(0, 2)));
         bookingdao.update(book.getBookingid(), amount, book.getStartTime(), 
         book.getEndTime(), book.getPhone(), book.getPurposeOfBooking());
 

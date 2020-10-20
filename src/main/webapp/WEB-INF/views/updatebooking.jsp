@@ -13,11 +13,11 @@
             <input type="hidden" value="${book.bookingid}" name="bookingid" class="form-control" id="bookingid"
             placeholder="bookingid" required ="true" readonly>
             <input type="text" value="${book.purposeOfBooking}" name="purposeOfBooking" class="form-control" id="purposeOfBooking"
-            placeholder="purposeOfBooking" required ="true" >
-            <input type="text" value="${book.startTime}" name="startTime" class="form-control" id="startTime"
-            placeholder="startTime" required ="true">
-            <input type="text" value="${book.endTime}" name="endTime" class="form-control" id="endTime"
-            placeholder="endTime" required ="true">
+            placeholder="Purpose of Booking" required ="true" >
+            <input type="time" value="${book.startTime}" name="startTime" class="form-control" id="startTime"
+            placeholder="start time" required ="true">
+            <input type="time" value="${book.endTime}" name="endTime" class="form-control" id="endTime"
+            placeholder="end time" required ="true">
             <input type="hidden" value="${book.facilityid}" name="facilityid" class="form-control" id="facilityid"
             placeholder="facilityid" required ="true" readonly>
             <input type="hidden" value="${book.residentid}" name="residentid" class="form-control" id="residentid"
