@@ -10,7 +10,7 @@
     </head>
     <body>
         <form:form method="post" modelAttribute="vendor" action="/admin/updatevendor" role="form">
-            <input type="text" value="${vendor.vendorid}" name="vendorid" class="form-control" id="vendorid"
+            <input type="hidden" value="${vendor.vendorid}" name="vendorid" class="form-control" id="vendorid"
             placeholder="vendorid" required ="true" readonly>
             <input type="text" value="${vendor.name}" name="name" class="form-control" id="name"
             placeholder="name" required ="true" >

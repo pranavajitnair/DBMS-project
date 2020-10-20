@@ -10,14 +10,20 @@
     </head>
     <body>
         <form action="javascript:func()" id="form" >
-            <input type="text" name="date" id="date"
+            <input type="date" name="date" id="date"
                 placeholder="dd/mm/yyyy" required ="true">
                 <input type="submit" value="Find" style="cursor: pointer;"/>
         </form>
             <script>
                 function func(){
                     date=document.getElementById("form").elements[0];
-                    window.location = '/security/listguestsdate?date='+date.value;
+                    d=new Date(date.value);
+                    dt=d.getDate();
+                    mn=d.getMonth();
+                    mn++;
+                    yy=d.getFullYear();
+			        finaldate=dt+"/"+mn+"/"+yy;
+                    window.location='/security/listguestsdate?date='+finaldate;
                 }
             </script>
     </body>

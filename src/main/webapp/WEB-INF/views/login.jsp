@@ -40,7 +40,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
               <span></span>
               <span></span>
               Login
-          </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <a onclick="func2()" type="button" style="font-size: xx-small; text-transform: lowercase; letter-spacing: 2px; cursor: pointer;"><u>Forgot Password?</u></a>
         </form:form>
       </div>

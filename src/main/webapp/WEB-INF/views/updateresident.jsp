@@ -11,11 +11,11 @@
     <body>
         
         <form:form method="post" modelAttribute="resident" action="/resident/update" role="form">
-            <input type="text" value="${resident.residentid}" name="residentid" class="form-control" id="residentid"
+            <input type="hidden" value="${resident.residentid}" name="residentid" class="form-control" id="residentid"
             placeholder="residentid" required ="true" readonly>
             <input type="text" value="${resident.residentName}" name="residentName" class="form-control" id="residentName"
             placeholder="residentName" required ="true" >
-            <input type="text" value="${resident.userid}" name="userid" class="form-control" id="userid"
+            <input type="hidden" value="${resident.userid}" name="userid" class="form-control" id="userid"
             placeholder="userid" required ="true" readonly>
             <input type="text" value="${resident.apartmentid}" name="apartmentid" class="form-control" id="apartmentid"
             placeholder="apartmentid" required ="true" >
@@ -23,7 +23,7 @@
             placeholder="code" required ="true" >
             <input type="text" value="${resident.numOfMembers}" name="numOfMembers" class="form-control" id="numOfMembers"
             placeholder="numOfMembers" required ="true" >
-            <input type="text" value="${resident.isOwner}" name="isOwner" class="form-control" id="isOwner"
+            <input type="hidden" value="${resident.isOwner}" name="isOwner" class="form-control" id="isOwner"
             placeholder="isOwner" required ="true" readonly>
             <input type="text" value="${resident.phone}" name="phone" class="form-control" id="phone"
             placeholder="phone" required ="true" >

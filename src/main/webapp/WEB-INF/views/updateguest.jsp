@@ -10,23 +10,23 @@
     </head>
     <body>
         <form:form method="post" modelAttribute="guest" action="/security/updateguest" role="form">
-            <input type="text" value="${guest.guestid}" name="guestid" class="form-control" id="guestid"
+            <input type="hidden" value="${guest.guestid}" name="guestid" class="form-control" id="guestid"
             placeholder="Guest ID" required ="true" readonly>
-            <input type="text" value="${guest.name}" name="name" class="form-control" id="name"
+            <input type="hidden" value="${guest.name}" name="name" class="form-control" id="name"
             placeholder="Name" required ="true" readonly>
-            <input type="text" value="${guest.purposeOfVisit}" name="purposeOfVisit" class="form-control" id="purposeOfVisit"
+            <input type="hidden" value="${guest.purposeOfVisit}" name="purposeOfVisit" class="form-control" id="purposeOfVisit"
             placeholder="Purpose of Visit" required ="true" readonly>
-            <input type="text" value="${guest.entryTime}" name="entryTime" class="form-control" id="entryTime"
+            <input type="hidden" value="${guest.entryTime}" name="entryTime" class="form-control" id="entryTime"
             placeholder="entry time (hh:mm)" required ="true" readonly>
-            <input type="text" value="${guest.exitTime}" name="exitTime" class="form-control" id="exitTime"
+            <input type="time" value="${guest.exitTime}" name="exitTime" class="form-control" id="exitTime"
             placeholder="exit time (hh:mm)" required ="true" >
-            <input type="text" value="${guest.phone}" name="phone" class="form-control" id="phone"
+            <input type="hidden" value="${guest.phone}" name="phone" class="form-control" id="phone"
             placeholder="phone" required ="true" readonly>
-            <input type="text" value="${guest.category}" name="category" class="form-control" id="category"
+            <input type="hidden" value="${guest.category}" name="category" class="form-control" id="category"
             placeholder="category" required ="true" readonly>
-            <input type="text" value="${guest.date}" name="date" class="form-control" id="date"
+            <input type="hidden" value="${guest.date}" name="date" class="form-control" id="date"
             placeholder="date" required ="true" readonly>
-            <input type="text" value="${guest.visited}" name="visited" class="form-control" id="visited"
+            <input type="hidden" value="${guest.visited}" name="visited" class="form-control" id="visited"
             placeholder="visited" required ="true" readonly>
             <input type="submit" value="Update" style="cursor: pointer;" />
         </form:form>

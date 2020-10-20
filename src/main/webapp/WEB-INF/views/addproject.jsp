@@ -51,24 +51,24 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
             <spring:bind path="startTime">
                <div class="user-box">
                 <form:input
-                type="text"
+                type="date"
                 path="startTime"
                 required="true"
-                placeholder="startTime"
+                placeholder="start date"
               />
                </div>
             </spring:bind>
             <spring:bind path="endTime">
               <div class="user-box">
                 <form:input
-                type="text"
+                type="date"
                 path="endTime"
                 required="true"
-                placeholder="endTime"
+                placeholder="end date"
               />
               </div>
             </spring:bind>
-            <a style="cursor: pointer;" type="button" onclick="document.getElementById('form1').submit();">
+            <a style="cursor: pointer;" type="button" onclick="func()">
               <span></span>
               <span></span>
               <span></span>
@@ -77,6 +77,28 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
           </a>
         </form:form>
       </div>
-        
+      <script>
+          function func(){
+                    date0=document.getElementById("form1").elements[3];
+                    date1=document.getElementById("form1").elements[4];
+                    d=new Date(date0.value);
+                    dt=d.getDate();
+                    mn=d.getMonth();
+                    mn++;
+                    yy=d.getFullYear();
+			              finaldate0=dt+"/"+mn+"/"+yy;
+                    d=new Date(date1.value);
+                    dt=d.getDate();
+                    mn=d.getMonth();
+                    mn++;
+                    yy=d.getFullYear();
+			              finaldate1=dt+"/"+mn+"/"+yy;
+                    document.getElementById("form1").elements[3].type="text";
+                    document.getElementById("form1").elements[4].type="text";
+                    document.getElementById("form1").elements[3].value=finaldate0;
+                    document.getElementById("form1").elements[4].value=finaldate1;
+                    document.getElementById('form1').submit();
+                }
+      </script>
     </body> 
 </html> 

@@ -102,6 +102,7 @@ public class ResidentController {
     public ModelAndView selectfacilities(@PathVariable(value="facilityid") final int facilityid) {
         final int month=Calendar.getInstance().get(Calendar.MONTH)+1;
         final int year=Calendar.getInstance().get(Calendar.YEAR);
+        final int daytt=Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         int days=Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
 
         List<Booking> bookings=bookingdao.find(facilityid,month,year);
@@ -113,7 +114,7 @@ public class ResidentController {
             lis.add(Integer.parseInt(day));
         }
 
-        for(int i=1;i<=days;i++){
+        for(int i=daytt+1;i<=days;i++){
             if(lis.contains(i)) continue;
             else dates.add(i);
         }

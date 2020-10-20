@@ -10,7 +10,7 @@
     </head>
     <body onload="popup('${kz}')">
         <form:form method="post" modelAttribute="book" action="/resident/updatebooking" role="form">
-            <input type="text" value="${book.bookingid}" name="bookingid" class="form-control" id="bookingid"
+            <input type="hidden" value="${book.bookingid}" name="bookingid" class="form-control" id="bookingid"
             placeholder="bookingid" required ="true" readonly>
             <input type="text" value="${book.purposeOfBooking}" name="purposeOfBooking" class="form-control" id="purposeOfBooking"
             placeholder="purposeOfBooking" required ="true" >
@@ -18,11 +18,11 @@
             placeholder="startTime" required ="true">
             <input type="text" value="${book.endTime}" name="endTime" class="form-control" id="endTime"
             placeholder="endTime" required ="true">
-            <input type="text" value="${book.facilityid}" name="facilityid" class="form-control" id="facilityid"
+            <input type="hidden" value="${book.facilityid}" name="facilityid" class="form-control" id="facilityid"
             placeholder="facilityid" required ="true" readonly>
-            <input type="text" value="${book.residentid}" name="residentid" class="form-control" id="residentid"
+            <input type="hidden" value="${book.residentid}" name="residentid" class="form-control" id="residentid"
             placeholder="residentid" required ="true" readonly>
-            <input type="text" value="${book.date}" name="date" class="form-control" id="date"
+            <input type="hidden" value="${book.date}" name="date" class="form-control" id="date"
             placeholder="date" required ="true" readonly>
             <input type="text" value="${book.phone}" name="phone" class="form-control" id="phone"
             placeholder="phone" required ="true">

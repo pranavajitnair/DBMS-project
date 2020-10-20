@@ -29,7 +29,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
             <spring:bind path="userid">
               <div class="user-box">
                 <form:input
-                type="text"
+                type="hidden"
                 path="userid"
                 required="true"
                 placeholder="User ID"
@@ -39,7 +39,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
             <spring:bind path="password">
               <div class="user-box">
                 <form:input
-                type="password"
+                type="hidden"
                 path="password"
                 required="true"
                 placeholder="password minimum 8 characters"

@@ -31,7 +31,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
             <spring:bind path="entryTime">
                <div class="user-box">
                 <form:input
-                type="text"
+                type="time"
                 path="entryTime"
                 required="true"
                 placeholder="entry time (hh:mm)"

@@ -24,7 +24,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
                 type="text"
                 path="fund"
                 required="true"
-                placeholder="Fund"
+                placeholder="Funds"
               /></div>
             </spring:bind>
             <spring:bind path="monthlyAmount">
@@ -33,7 +33,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
                 type="text"
                 path="monthlyAmount"
                 required="true"
-                placeholder="monthlyAmount"
+                placeholder="monthly Amount"
               />
                </div>
             </spring:bind>
@@ -70,20 +70,20 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
             <spring:bind path="startTime">
                 <div class="user-box">
                   <form:input
-                type="text"
+                type="time"
                 path="startTime"
                 required="true"
-                placeholder="startTime"
+                placeholder="start time"
               />
                 </div>
             </spring:bind>
             <spring:bind path="endTime">
                 <div class="user-box">
                   <form:input
-                type="text"
+                type="time"
                 path="endTime"
                 required="true"
-                placeholder="endTime"
+                placeholder="end time"
               />
                 </div>
             </spring:bind>
@@ -93,7 +93,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
                 type="text"
                 path="numOfPeople"
                 required="true"
-                placeholder="numOfPeople"
+                placeholder="Number of People"
               />
                 </div>
             </spring:bind>
