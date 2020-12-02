@@ -138,4 +138,9 @@ public class Bookingdao {
         String sql="delete from Booking where bookingid=?";
         jt.update(sql, bookingid);
     }
+
+    public void delete_null(){
+        String sql="delete from Booking where purposeOfBooking is NULL";
+        jt.update(sql);
+    }
 }

@@ -59,6 +59,7 @@ prefix="form" uri="http://www.springframework.org/tags/form" %>
             const params=new URLSearchParams(window.location.search);
             kz=params.get('kz');
             if(kz==1){
+                alert("Oops! Something went wrong while updating");
                 alert('Wrong password or the new passwords do not match');
             }
         }

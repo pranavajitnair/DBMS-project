@@ -216,9 +216,12 @@ public class ResidentController {
 
         }
 
+        bookingdao.delete_null();
+
         model.addObject("bookings",booked);
         model.addObject("kz", kz);
         model.addObject("test",test);
+        
         return model;
     }
 

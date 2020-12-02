@@ -33,7 +33,7 @@
             <input type="text" value="${owner.code}" name="code" class="form-control" id="code"
             placeholder="IFSC Code" required ="true" >
             <input type="text" value="${owner.dateOfPurchase}" name="dateOfPurchase" class="form-control" id="dateOfPurchase"
-            placeholder="Date of Purchase" required ="true" >
+            placeholder="Date of Purchase" required ="true" readonly>
             <input type="hidden" value="${owner.isResident}" name="isResident" class="form-control" id="isResident"
             placeholder="is Resident" required ="true" readonly>
             <input type="text" value="${owner.phone}" name="phone" class="form-control" id="phone"

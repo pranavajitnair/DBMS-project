@@ -31,9 +31,7 @@
         <script>
             function popup(kz){
                 if(kz!='0'){
-                    console.log(typeof kz);
                     alert("enter valid timings");
-                    console.log("test")
                 }
             }
         </script>
